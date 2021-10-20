@@ -1,8 +1,13 @@
+const connectDB = require("./db/connect")
+require('dotenv').config()
 const express = require('express');
 
 const app = express();
 
+
+
 const taskRouter = require('./routers/tasksRouter')
+
 
 app
 //front end
@@ -15,6 +20,19 @@ app
 //routers
 .use("/api/v1/tasks", taskRouter)
 
-//listener
+//connect to DB server 
+// then start to app as successful connection
 
-.listen(3000, () => console.log("listening @ 3000"));
+const connect = async () => {
+    try {
+        await connectDB(process.env.MONGO_URL)
+        //listener
+
+    app.listen(3000, () => console.log("listening @ 3000"));
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+connect();
+

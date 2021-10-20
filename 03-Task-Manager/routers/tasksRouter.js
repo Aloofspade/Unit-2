@@ -13,13 +13,13 @@ const router =  express.Router()
 const {
     getTask,
     removeTask,
-    clearTask,
+    clearTasks,
     getAllTasks,
     updateTask,
     createTask,
 } = require('../controllers/tasksCon')
 
-router.route('/').post(createTask).delete(clearTask).get(getAllTasks)
+router.route('/').post(createTask).delete(clearTasks).get(getAllTasks)
 router.route('/:id').put(updateTask).delete(removeTask).get(getTask)
 
 module.exports = router;
