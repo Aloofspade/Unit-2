@@ -1,17 +1,19 @@
 const asyncWrapper = require('../middleware/async')
+const Task = require("../models/Task")
 
 
+const getAllTasks =  asyncWrapper( async (req, res) => {
 
-const getAllTasks =  asyncWrapper( (req, res) => {
-// const tasks = await Task.find({});
-res.json({method: req.method, task:  'getAllTasks'});
+const tasks = await Task.find({});
+
+res.json({method: req.method, tasks });
 })
 const createTask =  asyncWrapper( async (req, res) => {
 
 // res.json({method: req.method, task:  'createTask', body: req.body});
 
 const task = await Task.create(req.body)
-res.status(201).json({ task })
+res.status(201).json({method: req.method, task, body: req.body})
 })
 const updateTask =  asyncWrapper( (req, res) => {
    
@@ -25,12 +27,21 @@ const updateTask =  asyncWrapper( (req, res) => {
             
             res.json({method: req.method, task:  'clearTasks'});
             })
-            const getTask =  asyncWrapper( (req, res) => {
-              
-                res.json({method: req.method, task:  'getTask', params: req.params});
+            const getTask =  asyncWrapper(async (req, res) => {
+                try{
+                    const task  = await Task.findById(req.params.id);
+                    if (!task){
+                        return  res.status(404).json({ msg: `No task with id ${req.params.id}` } );
+                    }
+                    res.json({method: req.method, task, params: req.params});
+                } catch (err) {
+                    res.status(404).json({ err } );
+                }
+             
+               
                 })
 
-
+              
 
 
 module.exports = {

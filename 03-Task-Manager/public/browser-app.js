@@ -1,6 +1,6 @@
 //declare DOM elements 
 
-const taskDOM = document.querySelector('.task')
+const taskDOM = document.querySelector('.tasks')
 const loadingDOM = document.querySelector('.loading-text')
 const formDOM = document.querySelector('.task-form')
 const taskInputDOM = document.querySelector('.task-input')
@@ -14,7 +14,7 @@ const showTasks = async () => {
     try {
         const {
             data: {tasks},
-        } = await avios.get("/api/tasks");
+        } = await avios.get("/api/v1/tasks");
         
         if (tasks.length > 1) {
             taskDOM.innerHTML = `<h5 class="empty-list">No task in your list</h5>`;
@@ -43,7 +43,7 @@ const showTasks = async () => {
             `;
 
         }).join("")
-        taskDOM.innerHTML = "hidden"
+        taskDOM.innerHTML = allTasks
     } catch (err) {
         taskDOM.innerHTML = `<h5 class="empty-list">There was an error, please try again...</h5>`
     }
