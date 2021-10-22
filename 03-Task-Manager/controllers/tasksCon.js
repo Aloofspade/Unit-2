@@ -1,58 +1,65 @@
-const asyncWrapper = require('../middleware/async')
-const Task = require("../models/Task")
+const asyncWrapper = require("../middleware/async");
+const Task = require("../models/Task");
 
+const getAllTasks = asyncWrapper(async (req, res) => {
+  const tasks = await Task.find({});
 
-const getAllTasks =  asyncWrapper( async (req, res) => {
+  res.json({ method: req.method, tasks });
+});
 
-const tasks = await Task.find({});
+const createTask = asyncWrapper(async (req, res) => {
+  // res.json({method: req.method, task:  'createTask', body: req.body});
 
-res.json({method: req.method, tasks });
-})
-const createTask =  asyncWrapper( async (req, res) => {
+  const task = await Task.create(req.body);
+  res.status(201).json({ method: req.method, task, body: req.body });
+});
 
-// res.json({method: req.method, task:  'createTask', body: req.body});
+const updateTask = asyncWrapper(async (req, res) => {
+  const { id } = req.params;
+  const task = await Task.findByIdAndUpdate(id, req.body, {
+    new: true,
+    runValidators: true,
+  });
 
-const task = await Task.create(req.body)
-res.status(201).json({method: req.method, task, body: req.body})
-})
-const updateTask =  asyncWrapper( (req, res) => {
-   
-    res.json({method: req.method, task:  'updateTask',params: req.params, body: req.body});
-    })
-    const removeTask =  asyncWrapper( (req, res) => {
-        
-        res.json({method: req.method, task: 'removeTask', params: req.params});
-        })
-        const clearTasks =  asyncWrapper( (req, res) => {
-            
-            res.json({method: req.method, task:  'clearTasks'});
-            })
-            const getTask =  asyncWrapper(async (req, res) => {
-                try{
-                    const task  = await Task.findById(req.params.id);
-                    if (!task){
-                        return  res.status(404).json({ msg: `No task with id ${req.params.id}` } );
-                    }
-                    res.json({method: req.method, task, params: req.params});
-                } catch (err) {
-                    res.status(404).json({ err } );
-                }
-             
-               
-                })
+  res.json({ method: req.method, task, params: req.params, body: req.body });
+});
+const removeTask = asyncWrapper(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const task = await Task.findByIdAndDelete(id);
+    if (!task) {
+      return res.json({ msg: `no item wiht id ${id}` });
+    }
+    res.json({ method: req.method, task, params: req.params });
+  } catch (err) {
+    res.json({ msg: err });
+  }
+});
+const clearTasks = asyncWrapper(async (req, res) => {
+  const tasks = await Task.deleteMany({});
 
-              
-
+  res.json({ method: req.method, tasks });
+});
+const getTask = asyncWrapper(async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    if (!task) {
+      return res.status(404).json({ msg: `No task with id ${req.params.id}` });
+    }
+    res.json({ method: req.method, task, params: req.params });
+  } catch (err) {
+    res.status(404).json({ err });
+  }
+});
 
 module.exports = {
-    getAllTasks,
-    createTask,
-    updateTask,
-    removeTask,
-    clearTasks,
-    getTask
-}
-
+  getAllTasks,
+  createTask,
+  updateTask,
+  removeTask,
+  clearTasks,
+  getTask,
+};
 
 /* 
 creating a libery DB
@@ -65,4 +72,4 @@ COLLECTION => movies
 | DOCUMENT => Avengers
 
 */
-
+U91J5uiQDAzf9Tvn
