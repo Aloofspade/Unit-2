@@ -1,3 +1,5 @@
-const re = /M[rs]D[r]E[r].\  [a-zA-Z]{0,}/g
+const re = /(Dr|Mr|Er|Ms|Mrs)\. [A-Z][a-z]*/g
 
-const str = 'Mr. Roll, Ms. Tony, Mrs. Smith,';
+const str = 'Mr. Roll, Ms. Tony, Mrs. Smith, mr.smks, Mirs,skda';
+
+console.log(str.match(re));
