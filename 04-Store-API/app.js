@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
-const connectDB = require('./db/connect')
-require('dotenv').config()
-require('express-async-errors')
+const connectDB = require('./db/connect');
+const notFound = require('./middleware/not-found');
+const errorHandler = require('./middleware/error-handler');
+require("dotenv").config();
+require("express-async-errors")
 
 
 const productsRouter = require('./routes/products')
