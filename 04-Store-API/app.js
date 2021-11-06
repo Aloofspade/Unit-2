@@ -23,6 +23,7 @@ const startServer = async () => {
         .use(errorHandler)
         .listen(3000, () => console.log("listening @ 3000"));
     } catch (err){
+        
         console.log(err);
     }
 
