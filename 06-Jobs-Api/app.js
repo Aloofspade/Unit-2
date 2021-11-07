@@ -7,7 +7,9 @@ require("dotenv").config();
 require("express-async-errors")
 
 const jobsRouter = require("./routes/jobs")
-const authRouter = require("./routes/auth")
+const authRouter = require("./routes/auth");
+const notFound = require("./middleware/not-found");
+const errorHandlerMiddleware = require("./middleware/error-handler")
 
 const BeginServer = async () => {
 

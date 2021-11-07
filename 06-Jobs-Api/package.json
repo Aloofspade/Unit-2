@@ -13,7 +13,6 @@
     "morgan": "^1.10.0",
     "portfolio": "^0.1.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
