@@ -16,6 +16,6 @@ app
 .use(notFound)
 .use(errorHandlerMiddleware)
 
-.listen(3000, () => console.log(`listening @ ${port}`))
+.listen(port, () => console.log(`listening @ ${port}`))
 
 

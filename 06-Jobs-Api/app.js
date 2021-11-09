@@ -11,6 +11,9 @@ const authRouter = require("./routes/auth");
 const notFound = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler")
 
+
+const port = process.env.POST || 3000
+
 const BeginServer = async () => {
 
 try{
