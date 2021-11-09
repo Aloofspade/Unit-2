@@ -1,12 +1,14 @@
 const express = require('express');
 
-const {jobs, dashboard} = require('../controllers/jobs')
+const {createJob,  getAllJobs, getJob, deleteJob, updateJob} = require('../controllers/createjob')
 
-const jobsMiddleware = require('../middleware/jobs')
+
 
 const router = express.Router();
 
-router.route('/jobs').post(login);
-router.route('/dashboard').get(dashboard, jobsMiddleware);
+router.route('/').post(createJob).get(getAllJobs);
+router.route('/:id').get(getJob).delete(deleteJob).patch(updateJob);
+
+
 
 module.exports = router;
