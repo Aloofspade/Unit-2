@@ -14,10 +14,6 @@ const errorHandlerMiddleware = require("./middleware/error-handler")
 
 const port = process.env.POST || 3000
 
-const BeginServer = async () => {
-
-try{
-await connectDB(process.env.MONGO_URL)
 app
 .use([express.urlencoded({extended: false}), express.json()])
 .get('/', (req, res) => {res.send("home")})
@@ -26,8 +22,13 @@ app
 //middleware
 .use(notFound)
 .use(errorHandlerMiddleware)
-//end middleware
-.listen(3000, () => console.log("listening @ 3000"))
+
+const BeginServer = async () => {
+
+try{
+await connectDB(process.env.MONGO_URL)
+
+app.listen(port, () => console.log(`listening to ${port}`))
 } catch (err){
 console.log(err);
 }
