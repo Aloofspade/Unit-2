@@ -1,6 +1,7 @@
 const User = require('./models//User');
 const bcrypt = require('bcrypt')
-const {StatusCodes} = require('http-status-codes')
+const {StatusCodes} = require('http-status-codes');
+const { BadRequest } = require('../errors');
 
 const register = async (req, res) => {
 //hashing- passing a string to get back a completly different string
@@ -17,10 +18,29 @@ const register = async (req, res) => {
 
 
     const newUser = await User.create(req.body);
-    res.status(StatusCodes.CREATED).json({ newUser });
+
+    const token = newUser.createJWT()
+    res.status(StatusCodes.CREATED)
+    .json({user: {name: newUser.name, userID: newUser.id}, token});
 };
-const login = (req, res) => {
-    res.send("login");
+const login = async (req, res) => {
+    const {email, password} = req.body
+    if(!email || !password) {
+        throw new BadRequest('must provide an email and password');
+    }
+    const user = await User.findOne({email})
+    if(!user) {
+        throw new UnautenticateError('Invalid Credentials');
+    }
+
+    const isPassCorrect = await user.comparePassword(password)
+    if(!isPassCorrect) {
+        throw new UnautenticateError('Invalid Credentials');
+    }
+
+    const token = user.createJWT();
+
+    res.status(StatusCodes.OK).json({user: {name: user.name, userID: user.id}, token});
 
 }
 

@@ -16,7 +16,7 @@ const JobsSchema =  new mongoose.Schema({
     status: {
         type: String,
         default: false,
-        default: Date.now,
+        default: "pending",
 
     },
     createdBy: {
@@ -25,6 +25,8 @@ const JobsSchema =  new mongoose.Schema({
     timeStamp: {
         currentTime: () => Math.floor(Date.now() / 1000) 
     }
-})
+},
+{timestamp: true}
+)
 
 module.exports = mongoose.model("Job", JobsSchema);
