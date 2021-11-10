@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+const bcrypt = require('bcrypt')
+
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -10,8 +12,13 @@ const UserSchema = new mongoose.Schema({
     email: {
         type:  String,
         required: [true, "must provide an email"],
-        re: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
-
+        match: [
+         /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,
+         "Must provide a valid email"
+        ],
+        maxLength: 50,
+        minLength: 3,
+        unique: true
     },
     password: {
         type:  String,
@@ -19,3 +26,10 @@ const UserSchema = new mongoose.Schema({
         minLength: [6, "password must be at least 6 characters"]
     }
 })
+
+UserSchema.pre("save", async function (next) {
+this.password = await bcrypt.hash(this.password, await bcrypt.genSalt(10));
+next()
+})
+
+module.exports = UserSchema;
