@@ -3,6 +3,9 @@ const bcrypt = require('bcrypt')
 const {StatusCodes} = require('http-status-codes');
 const { BadRequest } = require('../errors');
 
+
+
+
 const register = async (req, res) => {
 //hashing- passing a string to get back a completly different string
 //salting - create a random number of bits and add it to the string before hashing// 10 bits is more harder
