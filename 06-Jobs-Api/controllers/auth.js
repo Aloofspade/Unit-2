@@ -1,5 +1,5 @@
-const User = require('./models//User');
-const bcrypt = require('bcrypt')
+const User = require('../models/User');
+
 const {StatusCodes} = require('http-status-codes');
 const { BadRequest } = require('../errors');
 
@@ -26,6 +26,8 @@ const register = async (req, res) => {
     res.status(StatusCodes.CREATED)
     .json({user: {name: newUser.name, userID: newUser.id}, token});
 };
+
+
 const login = async (req, res) => {
     const {email, password} = req.body
     if(!email || !password) {

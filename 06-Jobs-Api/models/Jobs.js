@@ -4,13 +4,13 @@ const JobsSchema =  new mongoose.Schema({
     company: {
         type:  String,
         required: [true, "Company name must be provided"],
-        maxLength: [50, 'name must be less than 50 characters']
+        maxlength: 50
 
     },
     position: {
         type:  String,
         required: [true, 'must provide a position'], 
-        maxLength: [100, 'must be less than 100 characters']
+        maxlength: 100
     }, 
      //idk about this one 
     status: {
@@ -22,9 +22,7 @@ const JobsSchema =  new mongoose.Schema({
     createdBy: {
         jobSchema = new mongoose.Schema({ job: mongoose.ObjectId })
     },
-    timeStamp: {
-        currentTime: () => Math.floor(Date.now() / 1000) 
-    }
+    
 },
 {timestamp: true}
 )

@@ -1,6 +1,6 @@
 const express = require('express');
 
-const {createJob,  getAllJobs, getJob, deleteJob, updateJob} = require('../controllers/createjob')
+const {createJob,  getAllJobs, getJob, deleteJob, updateJob} = require('../controllers/jobs');
 
 
 
