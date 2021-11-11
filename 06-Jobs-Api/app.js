@@ -10,18 +10,17 @@ const jobsRouter = require("./routes/jobs")
 const authRouter = require("./routes/auth");
 const notFound = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler")
-
+const auth = require("./middleware/auth")
 
 const port = process.env.POST || 3000
 
 app
 .use([express.urlencoded({extended: false}), express.json()])
-.get('/', (req, res) => {res.send("home")})
-.use("/api/v1/jobs", jobsRouter)
-.use("/api/v1/auth", authRouter)
+.use("/api/v1/auth",  authRouter)
+.use("/api/v1/jobs", auth, jobsRouter)
 //middleware
 .use(notFound)
-.use(errorHandlerMiddleware)
+// .use(errorHandlerMiddleware)
 
 const BeginServer = async () => {
 

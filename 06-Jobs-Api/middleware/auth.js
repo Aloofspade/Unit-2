@@ -9,15 +9,13 @@ const authenticationMiddleware = async (req, res, next) => {
 
 
     if(!authHeader || !authHeader.startsWith('Bearer')){
-    throw new UnauthError("No token provided")
+    throw new UnauthError("Not authrized to be here")
     }
     const token = authHeader.split(" ")[1]
 
     try{
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
-
-        const {id, username} = decoded;
-        req.user = {id, username};
+        req.user = {userID: decoded.userID, name: decoded.name};
         next()
     } catch (err) {
         throw new UnauthError("Not authorized to access this route")
