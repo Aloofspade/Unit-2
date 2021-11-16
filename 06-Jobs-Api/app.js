@@ -12,15 +12,57 @@ const notFound = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler")
 const auth = require("./middleware/auth")
 
+//SECURITY 
+const helmet = require('helmet')
+
+const xss = require("xss-clean")
+
+const rateLimter = require('express-rate-limit')
+
+const cors = require('cors')
+
+
+//VARIABLES
 const port = process.env.POST || 3000
 
+const minutes = 1000 * 60;
+
+const limit = 15 * minutes
+
+
+
+
+
+
+
 app
+.set('trust proxy', 1)
+.use(
+    rateLimter({
+    windowMs: limit,
+    max: 100,
+    })
+)
 .use([express.urlencoded({extended: false}), express.json()])
+
+//safety blacket 
+.use(helmet())
+
+//cors pervents CORS Errors 
+
+.use(cors())
+
+//user sanitization - clears an user limits 
+
+.use(xss())
+
+
+
 .use("/api/v1/auth",  authRouter)
 .use("/api/v1/jobs", auth, jobsRouter)
 //middleware
 .use(notFound)
-// .use(errorHandlerMiddleware)
+.use(errorHandlerMiddleware)
 
 const BeginServer = async () => {
 
