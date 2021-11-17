@@ -1,18 +1,32 @@
-const express = require("express")
-
-const app = express();
-const connectDB = require("./db/connect")
-
+//Enviroment  setup 
 require("dotenv").config();
 require("express-async-errors")
 
-const jobsRouter = require("./routes/jobs")
-const authRouter = require("./routes/auth");
+
+
+///App Core
+const express = require("express")
+const app = express();
+const connectDB = require("./db/connect")
+
+//Middleware
+const auth = require("./middleware/auth")
 const notFound = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler")
-const auth = require("./middleware/auth")
 
-//SECURITY 
+//routes
+const jobsRouter = require("./routes/jobs")
+const authRouter = require("./routes/auth");
+
+
+//SwaggeUI
+const YAML = require('yaml-js')
+const swaggerUI = require('swagger-ui-express')
+
+const swaggerDoc = YAML.load("./swagger.yaml")
+
+
+//SECURITY Libraries 
 const helmet = require('helmet')
 
 const xss = require("xss-clean")
@@ -56,6 +70,11 @@ app
 
 .use(xss())
 
+.get('/', (req, res) => {
+    res.send(`<h1>Jobs APi</h1><a href="/api-docs">Documentation</a>`)
+})
+
+.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc))
 
 
 .use("/api/v1/auth",  authRouter)

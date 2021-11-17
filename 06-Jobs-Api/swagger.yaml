@@ -1,0 +1,220 @@
+openapi: 3.0.0
+info:
+  title: Job-API
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://example.com
+  variables: {}
+paths:
+  /:
+    get:
+      tags:
+      - Jobs
+      summary: get jobs
+      operationId: getjobs
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - Jobs
+      summary: create job
+      operationId: createjob
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createjobrequest'
+            example:
+              company: apple
+              position: front and dev
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /{id}:
+    put:
+      tags:
+      - Jobs
+      summary: Update Job
+      operationId: UpdateJob
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: 'null'
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: Brearer {{JobToken}}
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateJobRequest'
+            example:
+              company: west-mec
+              position: student
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    delete:
+      tags:
+      - Jobs
+      summary: Delete Job
+      operationId: DeleteJob
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: 'null'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /register:
+    post:
+      tags:
+      - Auth
+      summary: register user
+      operationId: registeruser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registeruserrequest'
+            example:
+              name: Aubrey
+              email: Aubrey2@email.com
+              password: password
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /login:
+    post:
+      tags:
+      - Auth
+      summary: login
+      operationId: login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loginrequest'
+            example:
+              email: Aubrey2@email.com
+              password: password
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+components:
+  schemas:
+    UpdateJobRequest:
+      title: UpdateJobRequest
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: west-mec
+        position: student
+    createjobrequest:
+      title: createjobrequest
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: apple
+        position: front and dev
+    registeruserrequest:
+      title: registeruserrequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: Aubrey
+        email: Aubrey2@email.com
+        password: password
+    loginrequest:
+      title: loginrequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: Aubrey2@email.com
+        password: password
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+- httpBearer: []
+tags:
+- name: Jobs
+  description: 'CROD operations on mongo DB'
+- name: Auth
+  description: 'Register new errors and login existing '
