@@ -3,11 +3,13 @@ require("express-async-errors")
 
 
 const express = require('express');
-
 const app = express();
-
-
 const connectDB = require('./db/connect')
+
+const auth = require('./middleware/auth')
+const notFound = require('./middleware/not-found')
+const errorHandlerMiddleware = require('./middleware/error-handler')
+
 
 const foodRoute = require('./Routes/food')
 const authRoute = require('./Routes/auth')
@@ -49,8 +51,11 @@ app
 //middleware
 
 //
-.use("", foodRoute)
-.use("", authRoute)
+.use("/api/v1/food", auth, foodRoute)
+.use("/api/v1/auth", authRoute)
+
+.use(notFound)
+.use(errorHandlerMiddleware)
 
 const BeginServer = async () => {
 
