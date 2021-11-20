@@ -11,7 +11,7 @@ const notFound = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
 
 
-const foodRoute = require('./Routes/food')
+const burgerRoute = require('./Routes/burger')
 const authRoute = require('./Routes/auth')
 
 
@@ -51,7 +51,7 @@ app
 //middleware
 
 //
-.use("/api/v1/food", auth, foodRoute)
+.use("/api/v1/burger", auth, burgerRoute)
 .use("/api/v1/auth", authRoute)
 
 .use(notFound)
