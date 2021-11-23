@@ -1,6 +1,6 @@
 const User = require('../models/User');
 
-const {StatusCodes} = require('http-status-codes');
+const {StatusCode} = require('http-status-codes');
 const { BadRequest } = require('../errors');
 
 
@@ -23,7 +23,7 @@ const register = async (req, res) => {
     const newUser = await User.create(req.body);
 
     const token = newUser.createJWT()
-    res.status(StatusCodes.CREATED)
+    res.status(StatusCode.CREATED)
     .json({user: {name: newUser.name, userID: newUser.id}, token});
 };
 
@@ -45,7 +45,7 @@ const login = async (req, res) => {
 
     const token = user.createJWT();
 
-    res.status(StatusCodes.OK).json({user: {name: user.name, userID: user.id}, token});
+    res.status(StatusCode.OK).json({user: {name: user.name, userID: user.id}, token});
 
 }
 
