@@ -1,6 +1,6 @@
 const express = require('express')
 
-const {createBurger, getAllBurgers, getBurger, deleteBurger, updateBurger} = require("../Controllers/burger")
+const {createBurger, getAllBurgers, getBurger, deleteBurger, updateBurger} = require("../controllers/burger")
 
 
 const router = express.Router();
