@@ -1,0 +1,258 @@
+---
+openapi: 3.0.0
+info:
+  title: Api-Project
+  contact: {}
+  version: 1.0.0-oas3
+servers:
+- url: https://abdiunit2projectapi.herokuapp.com/api/v1
+tags:
+- name: Burgers
+  description: CROD operations on mongo DB
+- name: Auth
+  description: Register new errors and login existing
+paths:
+  /:
+    get:
+      tags:
+      - Burgers
+      summary: get burgers
+      operationId: getburgers
+      parameters: []
+      responses:
+        "200": {}
+      deprecated: false
+    post:
+      tags:
+      - Burgers
+      summary: Create Burger
+      operationId: CreateBurger
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBurgerRequest'
+            example:
+              name: Abdi
+              burger: Mr.Beast Burger
+              flavor: Kechup
+              remove: onions
+        required: true
+      responses:
+        "200": {}
+      deprecated: false
+  /{id}:
+    get:
+      tags:
+      - Burgers
+      summary: Get One Burger
+      operationId: GetOneBurger
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: |
+            468d1de3-ff82-4c97-8c86-cd8f5a3d6016
+      - name: id
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Brearer {{BurgerToken}}
+      responses:
+        "200": {}
+      deprecated: false
+      security: []
+    put:
+      tags:
+      - Burgers
+      summary: Update Burger
+      operationId: UpdateBurger
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: |
+            f2eba945-19d7-48c9-8d60-afe454ab1529
+      - name: id
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Brearer {{BurgerToken}}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBurgerRequest'
+            example:
+              name: Abdi
+              burger: Mr.Beast Burger
+              flavor: Kechup, Mustard
+              remove: onions, tomatoes
+        required: true
+      responses:
+        "200": {}
+      deprecated: false
+      security: []
+    delete:
+      tags:
+      - Burgers
+      summary: Delete Burger
+      operationId: DeleteBurger
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: 8ca1a1c3-7363-44f0-be72-f08becf31bfd
+      - name: id
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: Brearer {{BurgerToken}}
+      responses:
+        "200": {}
+      deprecated: false
+      security: []
+  /register:
+    post:
+      tags:
+      - Misc
+      summary: register user
+      operationId: registeruser
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registeruserrequest'
+            example:
+              name: Aubrey
+              email: Aubrey5@email.com
+              password: password
+              description: I want My Burger without tomato
+        required: true
+      responses:
+        "200": {}
+      deprecated: false
+  /login:
+    post:
+      tags:
+      - Misc
+      summary: login
+      operationId: login
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loginrequest'
+            example:
+              email: Aubrey5@email.com
+              password: password
+        required: true
+      responses:
+        "200": {}
+      deprecated: false
+components:
+  schemas:
+    UpdateBurgerRequest:
+      title: UpdateBurgerRequest
+      required:
+      - burger
+      - flavor
+      - name
+      - remove
+      type: object
+      properties:
+        name:
+          type: string
+        burger:
+          type: string
+        flavor:
+          type: string
+        remove:
+          type: string
+      example:
+        name: Abdi
+        burger: Mr.Beast Burger
+        flavor: Kechup, Mustard
+        remove: onions, tomatoes
+    CreateBurgerRequest:
+      title: CreateBurgerRequest
+      required:
+      - burger
+      - flavor
+      - name
+      - remove
+      type: object
+      properties:
+        name:
+          type: string
+        burger:
+          type: string
+        flavor:
+          type: string
+        remove:
+          type: string
+      example:
+        name: Abdi
+        burger: Mr.Beast Burger
+        flavor: Kechup
+        remove: onions
+    registeruserrequest:
+      title: registeruserrequest
+      required:
+      - description
+      - email
+      - name
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        description:
+          type: string
+      example:
+        name: Aubrey
+        email: Aubrey5@email.com
+        password: password
+        description: I want My Burger without tomato
+    loginrequest:
+      title: loginrequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: Aubrey5@email.com
+        password: password
