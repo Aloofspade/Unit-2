@@ -3,9 +3,8 @@ const Burger = require('../models/Burgers')
 const {StatusCode} = ('http-status-codes')
 
 const getAllBurgers = async (req, res) => {
-    const burgers = await Burger.find({});
-
-  res.json({ method: req.method, burgers });
+    const jobs = await Job.find({createdBy: req.user.userID}).sort("created at")
+    res.status(StatusCode.OK).json({jobs, length: jobs.length})
 }
 
 const getBurger = async (req, res) => {

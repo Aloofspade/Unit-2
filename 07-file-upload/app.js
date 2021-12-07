@@ -6,6 +6,13 @@ const express = require("express")
 const app = express()
 
 const fileUpload = require('express-fileupload')
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({ 
+    cloud_name: process.env.cloud_name, 
+    api_key: process.env.api_key, 
+    api_secret: process.env.api_secret 
+  });
 
 const connectDB = require("./db/connect")
 

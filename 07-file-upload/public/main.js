@@ -35,5 +35,50 @@ imageInput.addEventListener("change", async (e) => {
 
     // console.log([...formData.keys()]);
 
+});
+
+fileForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nameValue = nameInput.value;
+
+    const priceValue = priceInput.value;
+
+
+    try{
+        const product = {price: priceValue, image: imageValue, name: nameValue}
+
+        await axios.post(url, product);
+
+
+  fetchProducts();
+    } catch (err) {
+     console.log(err);
+    }
 })
+
+
+async function fetchProducts() {
+    try {
+        const {data: {products}} = await axios.get(url);
+
+        const tempContainerHTML = products.map(product => {
+            return `<article class="products"> 
+            <img src="${product.image}" alt="${product.name}" class="img" /> 
+            <footer>
+                <p>${product.name}</p>
+                <span>${product.price}</span>
+            </footer>
+            </article>`
+        }).join('');
+        
+        container.innerHTML = tempContainerHTML; 
+    } catch (err){
+        console.log(err);
+    }
+}
+
+
+fetchProducts();
+
 
