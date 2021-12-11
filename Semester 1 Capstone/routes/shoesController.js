@@ -1,15 +1,9 @@
-const Shoe = require('../models/Shoes')
+const express = require('express')
+const { uploadImage } = require('../controllers/imageUploadController')
+const { createShoe, getAllShoes } = require('../controllers/shoesController')
+const router = express.Router()
 
-const createShoe = async (req, res) => {
-    const shoe = await Shoe.create(req.body)
-    res.status(200).json({shoe})
-}
+router.route("/").get(getAllShoes).post(createShoe)
+router.route("/uploads").post(uploadImage)
 
-const getAllShoes  =  async (req, res) => {
-    const shoes = await Shoe.find({})
-    res.status(200).json({shoes})
-}
-module.exports = {
-    createShoe,
-    getAllShoes
-}
+module.exports = router
