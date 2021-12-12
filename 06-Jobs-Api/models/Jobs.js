@@ -9,7 +9,7 @@ const JobsSchema =  new mongoose.Schema({
     },
     position: {
         type:  String,
-        required: [true, 'must provide a position'], 
+        required: [true, 'must provide~ a position'], 
         maxlength: 100
     }, 
      //idk about this one 
