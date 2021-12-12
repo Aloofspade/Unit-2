@@ -30,7 +30,7 @@ set up your env on heroku
 
 - `heroku config:set [env setting]`
 - once you add all of your settings you need to push your app to heroku
-- `git push heroku main` if main doesn't work try master
+- `c` if main doesn't work try master
 - some values are annoying to do like the MONGO URL since that has values like "&" and ":" so in those cases you can
   - go to the heroku dashboard
   - click the project
