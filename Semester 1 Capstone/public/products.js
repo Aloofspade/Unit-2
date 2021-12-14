@@ -1,8 +1,8 @@
 const products = [
   {
     id: 0,
-    name: "T-shirt 1",
-    price: 29.99,
+    name: "Air Jordan 5 Retro ",
+    price: 215.00,
     instock: 100,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, error.",
