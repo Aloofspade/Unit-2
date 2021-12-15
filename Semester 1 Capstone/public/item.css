@@ -49,7 +49,7 @@ a {
   height: 100%;
 }
 .app-bg .right-side {
-  background-color: rgb(var(--right-side-bg-color));
+  background-color: #000C66;
   width: 25%;
   height: 100%;
 }
@@ -89,8 +89,8 @@ header nav ul li a {
   height: 32px;
 }
 header nav ul li.btn {
-  background-color: rgba(var(--right-side-bg-color), 0.4);
-  border: 1px solid rgb(var(--right-side-bg-color));
+  background-color: #000C66;
+  border: 1px solid #000C66;
 }
 header nav ul li.btn img {
   width: 32;
@@ -99,9 +99,11 @@ header nav ul li.btn img {
 header nav ul li.home a {
   display: flex;
   align-items: center;
+  color: white;
 }
 header nav ul li.home a img {
   margin-right: 5px;
+  color: white;
 }
 /* HEADER -> SHOOPING BAG */
 .shopping-bag {
@@ -114,12 +116,17 @@ header nav ul li.home a img {
 .shopping-bag a img {
   width: 32px;
   height: 32px;
+  color: white;
 }
 .shopping-bag .total-items-in-cart {
   margin-left: 10px;
   padding: 5px;
-  background-color: rgb(242, 255, 58);
+  color: #fff;
+  background-color: red;
   border-radius: 5px;
+}
+.cart-bag{
+  color: #fff;
 }
 /* MAIN */
 main {
@@ -151,7 +158,7 @@ main .model {
 }
 .product {
   width: 300px;
-  border: 1px solid rgba(var(--right-side-bg-color), 0.4);
+  border: 1px solid #000C66;
   border-radius: 10px;
   padding: 5px;
 }
@@ -179,6 +186,7 @@ main .model {
 .see-more-btn img {
   width: 80px;
   margin-right: 20px;
+ 
 }
 
 .more-details .description small {
@@ -272,7 +280,7 @@ main .model {
   padding: 10px;
 }
 .products .item .item-container .add-to-cart {
-  background-color: rgba(var(--right-side-bg-color), 0.7);
+  background-color: #000C66;
   /* background-color: rgb(242, 255, 58); */
 
   display: flex;
@@ -366,6 +374,7 @@ main .model {
 .cart-item .unit-price {
   flex: 1;
   font-size: 1.2rem;
+  color: white;
 }
 /* units */
 .cart-item .units {
@@ -373,14 +382,14 @@ main .model {
 }
 .cart-item .units .number {
   margin: 0 10px;
-
+color: white;
   font-size: 1.2rem;
 }
 .cart-item .units .btn {
   width: 20px;
   height: 20px;
 
-  background-color: rgb(242, 255, 58);
+  background-color: #011CE6;
 
   border-radius: 50%;
 
@@ -398,7 +407,7 @@ main .model {
   bottom: 0;
   left: 0;
 
-  border-left: 1px solid rgb(var(--right-side-bg-color));
+  border-left: 1px solid black;
 }
 .cart-footer div {
   display: flex;
@@ -413,7 +422,12 @@ main .model {
   background-color: white;
 }
 .cart-footer .checkout {
-  background-color: rgb(242, 255, 58);
+  background-color: red;
 
   cursor: pointer;
 }
+
+.column1, .column2, .column3{
+  color: #fff;
+}
+
