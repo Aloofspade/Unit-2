@@ -9,7 +9,7 @@ const app = express()
 const fileUpload = require('express-fileupload')
 const cloudinary = require('cloudinary').v2;
 
-
+const connectDB = require("./db/connect")
 cloudinary.config({ 
     cloud_name: process.env.cloud_name, 
     api_key: process.env.api_key, 
@@ -18,7 +18,7 @@ cloudinary.config({
 
 
 
-const shoeRouter = require("./routes/shoesController")
+const shoeRouter = require("./routes/shoeRoutes")
 
 const notFoundError = require("./errors/notfound")
 
@@ -44,7 +44,7 @@ app
 
 const start = async () => {
     try {
-    
+        await connectDB(process.env.MONGO_URL);
             app.listen(port, console.log(`listening @ ${port}`))
         
     } catch (error){

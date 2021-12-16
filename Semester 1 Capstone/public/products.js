@@ -6,7 +6,7 @@ const products = [
     instock: 100,
     description:
       "Raging Bull Red",
-    imgSrc: "./img/t1.png",
+    imgSrc: "uploads/t1.png",
   },
   {
     id: 1,
@@ -15,7 +15,7 @@ const products = [
     instock: 43,
     description:
       "Jubilee (GS)",
-    imgSrc: "./img/t2.png",
+    imgSrc: "uploads/t2.png",
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const products = [
     instock: 10,
     description:
       "Black Royal Blue",
-    imgSrc: "./img/t3.png",
+    imgSrc: "uploads/t3.png",
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const products = [
     instock: 5,
     description:
       "Oregon Track & Field PE (2018)",
-    imgSrc: "./img/t4.png",
+    imgSrc: "uploads/t4.png",
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ const products = [
     instock: 4,
     description:
       "Flu Game (2016)",
-    imgSrc: "./img/t5.png",
+    imgSrc: "uploads/t5.png",
   },
   {
     id: 5,
@@ -51,6 +51,6 @@ const products = [
     instock: 40,
     description:
       "White Red (2014)",
-    imgSrc: "./img/t6.png",
+    imgSrc: "uploads/t6.png",
   },
 ];

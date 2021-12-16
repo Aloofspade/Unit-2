@@ -67,7 +67,7 @@ async function fetchShoes() {
             <img src="${shoe.image}" alt="${shoe.name}" class="img" /> 
             <footer>
                 <p>${shoe.name}</p>
-                <span>${shoe.price}</span>
+                <p class="price">${shoe.price}</p>
             </footer>
             </article>`
         }).join('');

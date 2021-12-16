@@ -317,7 +317,7 @@ max-width: 400px;
 }
 
 .container img {
-    height: 175px;
+    height: 200px;
     border-radius: var(--borderRadius);
   }
 .container footer {
@@ -337,18 +337,22 @@ max-width: 400px;
     color: var(--primary-500);
     letter-spacing: var(--spacing);
   }
-
+.price{
+  color: green;
+}
 
 
   @media (min-width: 992px) {
     .container {
       grid-template-columns: repeat(2, 1fr);
     }
+    
   }
   @media (min-width: 1170px) {
     .container {
       grid-template-columns: repeat(3, 1fr);
     }
+    
   }
 
   
