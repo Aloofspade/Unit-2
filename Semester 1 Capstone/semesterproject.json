@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "79014d1b-2b52-43c6-881a-bc18b95954ff",
+		"name": "project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getAllShoes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{DEV_URL}}",
+					"host": [
+						"{{DEV_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Jordan 2\",\r\n    \"price\": \"560\",\r\n    \"image\": \"/uploads/t6.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{DEV_URL}}",
+					"host": [
+						"{{DEV_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Atorre278/Downloads/t1.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{DEV_URL}}/uploads",
+					"host": [
+						"{{DEV_URL}}"
+					],
+					"path": [
+						"uploads"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
