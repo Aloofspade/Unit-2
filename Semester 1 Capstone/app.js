@@ -6,6 +6,8 @@ const express = require("express")
 const app = express()
 
 
+const stripeController = require("./controllers/stripeCon")
+
 const fileUpload = require('express-fileupload')
 const cloudinary = require('cloudinary').v2;
 
@@ -38,6 +40,7 @@ app
 })
 
 .use('/api/v1/shoes', shoeRouter)
+.post("/stripe", stripeController)
 .use(notFoundError)
 .use(errorHandlerMiddleware)
 

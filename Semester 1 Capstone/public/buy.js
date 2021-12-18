@@ -1,12 +1,13 @@
 // const { empty } = require("statuses");
 
 const purchase = [
-    {id: '1', name: "chair", price: 1999, qty: 1},
-    {id: '2', name: "shoes", price: 4999, qty: 2}
+    {id: '1', name: "Jordan 5", price: 21500, qty: 1},
+    {id: '2', name: "Jordan 11", price: 23900, qty: 2},
+    {id: '3', name: "Jordan 12", price: 45500, qty: 3},
 ]
 
 
-const totalAmount = 11997
+const totalAmount = 90900
 const shippingFee = 2000
 
 const stripe = Stripe("pk_test_51K4ZHxEAGGc1EAR5xKJFOetpxksl4WzYfjCfMzGA4eOQbI7lWhFQaQhKVCUcyv6wXmpQAu61bpYHsqfnR9WUDnBm00xRZWrLkB");
